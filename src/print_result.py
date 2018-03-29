@@ -13,7 +13,7 @@ def PrintTopNResult(n, t_src, write_src, index2word_src):
         t = pickle.load(file_read)
     with open(index2word_src, 'rb') as file_read:
         index2word = pickle.load(file_read)
-    # print type(t)
+        
     t = sorted(t.items(), key = lambda item:item[1], reverse=True)
     with open(write_src, 'wb') as file_write:
         for i in xrange(n):

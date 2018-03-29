@@ -6,33 +6,39 @@
 # @Software: PyCharm
 
 def Init(foreign_sentences_embedding, native_sentences_embedding):
-    t = {}  #key is (native, foreign)
+    t = {}  #key is (native, foreign), value is number
+    denominator = {} #key is (foreign), value is number
     for sentence_index in xrange(len(foreign_sentences_embedding)):
-        for word_index in xrange(len(native_sentences_embedding[sentence_index])):
-            # if t.has_key((native_sentences_embedding[sentence_index][word_index], 0)):
-            #     #native word map to NULL, NULL's index is 0
-            #     t[(native_sentences_embedding[sentence_index][word_index], 0)] += 1
-            # else:
-            #     t[(native_sentences_embedding[sentence_index][word_index], 0)] = 1
-            for i in xrange(len(foreign_sentences_embedding[sentence_index])):
-                if t.has_key((native_sentences_embedding[sentence_index][word_index], \
-                              foreign_sentences_embedding[sentence_index][i])):
-                    t[(native_sentences_embedding[sentence_index][word_index], \
-                              foreign_sentences_embedding[sentence_index][i])] += 1
+        for native_word in native_sentences_embedding[sentence_index]:
+            #if you want to import NULL, please uncomment following lines
+            if denominator.has_key(0):
+                denominator[0] += 1
+            else:
+                denominator[0] = 1
+            if t.has_key((native_word, 0)):
+                t[(native_word, 0)] += 1
+            else:
+                t[(native_word, 0)] = 1
+            for foreign_word in foreign_sentences_embedding[sentence_index]:
+                if t.has_key((native_word, foreign_word)):
+                    t[(native_word, foreign_word)] += 1
                 else:
-                    t[(native_sentences_embedding[sentence_index][word_index], \
-                       foreign_sentences_embedding[sentence_index][i])] = 1
+                    t[(native_word, foreign_word)] = 1
+                if denominator.has_key(foreign_word):
+                    denominator[foreign_word] += 1
+                else:
+                    denominator[foreign_word] = 1
     for key in t.keys():
-        t[key] = (1.0/t[key])
+        t[key] = (1.0/denominator[key[1]])
     return t
 
 def IBMAlgorithm(foreign_sentences_embedding, native_sentences_embedding, t, \
                  foreign_index_to_word, native_index_to_word):
     threshold = 1e-3
     avg_change = 1
-    s = {}
-    count = {}
-    total = {}
+    s = {} #key is native embedding, value is number
+    count = {} #key is (native_embedding, foreign_embdding), value is number
+    total = {} #key is foreith_embdding, value is number
     while avg_change > threshold:
         print avg_change
         sum_change = 0.0
