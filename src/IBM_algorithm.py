@@ -11,14 +11,14 @@ def Init(foreign_sentences_embedding, native_sentences_embedding):
     for sentence_index in xrange(len(foreign_sentences_embedding)):
         for native_word in native_sentences_embedding[sentence_index]:
             #if you want to import NULL, please uncomment following lines
-            if denominator.has_key(0):
-                denominator[0] += 1
-            else:
-                denominator[0] = 1
-            if t.has_key((native_word, 0)):
-                t[(native_word, 0)] += 1
-            else:
-                t[(native_word, 0)] = 1
+            # if denominator.has_key(0):
+            #     denominator[0] += 1
+            # else:
+            #     denominator[0] = 1
+            # if t.has_key((native_word, 0)):
+            #     t[(native_word, 0)] += 1
+            # else:
+            #     t[(native_word, 0)] = 1
             for foreign_word in foreign_sentences_embedding[sentence_index]:
                 if t.has_key((native_word, foreign_word)):
                     t[(native_word, foreign_word)] += 1

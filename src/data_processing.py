@@ -27,9 +27,9 @@ def Word2Index(sentences):
     #count is the initialization of index
     count = 0 
     #if you want to import Null, please initialize count as 1 and uncomment following lines, otherwise set count as 0
-    word_to_index['NULL'] = 0
-    index_to_word[0] = 'NULL'
-    count = 1
+    # word_to_index['NULL'] = 0
+    # index_to_word[0] = 'NULL'
+    # count = 1
     for sentence in sentences:
         for word in sentence.split():
             if not word_to_index.has_key(word.lower()):
