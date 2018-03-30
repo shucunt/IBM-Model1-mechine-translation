@@ -1,6 +1,6 @@
 # IBM-Model1-mechine-translation
 
-本项目基于‘statistical mechine translation’一书中4.2节的图4.3算法实现<br
+本项目基于‘statistical mechine translation’一书中4.2节的图4.3算法实现<br>
 
 主要包含4个py文件：run.py, data_processing.py, print_result.py, IBM_algorithm.py<br>
 
