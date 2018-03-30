@@ -12,5 +12,5 @@ run.py是算法运行的主文件，会运行上述两个py文件。<br>
 
 print\_result.py是打印结果的代码，可以将t中topN的对应结果输出，并打印到output中。<br><br>
 
-如发现算法存在问题，请联系shucunt@q63.com，谢谢！<br>
+如发现算法存在问题，请联系shucunt@163.com，谢谢！<br>
 
